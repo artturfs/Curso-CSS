@@ -4,20 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Flexbox #02</title>
-    <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+        div {
+            border: solid 5px dodgerblue;
+            font-size: 40px;
+        }
+
+        /*
+         garante que padding/border sejam incluídos na largura/altura
+         do elemento; útil para calcular espaço dos flex items
+        */
+        .flex-container div {
+            box-sizing: border-box;
+        }
+
+        /*
+         transforma o elemento em um flex container.
+         - display: flex ativa o flexbox
+        */
+        .flex-container {
+            display: flex;
+            height: 300px;
+            width: 600px;
+        }
+
+        /*
+         seletor para o 3º filho: demonstra várias propriedades de item
+         - order: controla a posição visual do item no eixo principal
+           (valores maiores aparecem depois; valores negativos vão antes)
+           Quando há múltiplas declarações, a última sobrescreve as anteriores.
+         - align-self: sobrescreve o 'align-items' do container para este item
+           (valores: auto, flex-start, flex-end, center, baseline, stretch)
+        */
+        .flex-container div:nth-child(3) {
+            background-color: indianred;
+            order: -1;
+            align-self: center;
+        }
+
+        /*
+         regras aplicadas a todos os filhos:
+         - flex-grow: fator de crescimento quando há espaço extra
+           (0 = não cresce, 1 = cresce proporcionalmente)
+         Note: declarações repetidas serão sobrescritas pela última.
+        */
+        .flex-container div {
+            width: 100px;
+            flex-grow: 1;
+        }
+
+        /* exemplo: aumenta o crescimento do 1º item especificadamente */
+        .flex-container div:nth-child(1) {
+            flex-grow: 2;
+        }
+
+        /*
+         demonstra reatribuição de largura do container e uso de flex-shrink
+         - flex-shrink: fator de encolhimento quando falta espaço
+           (valores maiores encolhem mais)
+        */
+        .flex-container {
+            width: 300px;
+            flex-shrink: 1;
+        }
+
+        /* exemplo: faz o 1º item encolher mais quando necessário */
+        .flex-container div:nth-child(1) {
+            flex-shrink: 5;
+        }
     </style>
 </head>
 
 <body>
-    <div class="flex-container tag nolabel">
-        <div class="tag nolabel">1</div>
-        <div class="tag nolabel">2</div>
-        <div class="tag nolabel">3</div>
-        <div class="tag nolabel">4</div>
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
     </div>
-    <script src="js/tag.js"></script>
 </body>
 
 </html>

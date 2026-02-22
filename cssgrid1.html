@@ -14,13 +14,79 @@
             background-color: lightgray;
         }
         
+        /*
+         cada célula do grid aqui é um <div>; usamos flexbox dentro
+         do item para centralizar seu conteúdo (texto) tanto vertical
+         quanto horizontalmente.
+        */
         div {
+            /* ativa um contexto flex para centralizar o conteúdo do item */
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; /* alinha no eixo cruzado (vertical) */
+            justify-content: center; /* alinha no eixo principal (horizontal) */
             font-size: 30px;
             border: solid 5px dodgerblue;
             background: #fff;
+        }
+
+        /*
+         transforma o <body> em um grid container. Aqui existem várias
+         declarações de exemplo para `grid-template-columns` e
+         `grid-template-rows` — apenas a última declaração válida de
+         cada propriedade será aplicada (última regra tem precedência).
+
+         Explicações rápidas:
+           - `grid-template-columns`: define as colunas do grid.
+               - valores absolutos (px), percentuais (%), `fr` (fração)
+               - `repeat()` simplifica repetições.
+               - `minmax(min, max)` define um intervalo aceitável.
+           - `grid-template-rows`: define as linhas do grid.
+        */
+        body {
+            display: grid;
+            grid-template-columns: 3fr 6fr 3fr; /* exemplo final aplicado */
+            /*
+             outras formas demonstradas (não aplicadas se comentadas pela ordem):
+               - 50% 50% divide em duas colunas iguais
+               - repeat(12, 8.33%) cria 12 colunas de ~8.33% cada
+               - repeat(11, 100px) 100px cria 12 colunas fixas de 100px
+               - 200px 20% 1fr mistura unidades fixas, percentuais e frações
+            */
+            grid-template-rows: 100px auto auto auto; /* altura das linhas (última declarada)
+             - 100px: altura fixa da 1ª linha
+             - auto: as linhas seguintes se ajustam ao conteúdo
+            */
+        }
+
+        /*
+         `.d8` posiciona o item em colunas/linhas específicas:
+           - `grid-column-start` / `grid-column-end`: controlam onde o item começa
+             e termina ao longo das colunas. `grid-column-end: span 2` faz o
+             item ocupar 2 colunas a partir do início.
+           - `grid-row-start` / `grid-row-end`: mesma ideia para linhas; usar
+             `span` permite estender por várias linhas.
+        */
+        .d8 {
+            grid-column-start: 2;
+            grid-column-end: span 2; /* ocupa duas colunas começando na coluna 2 */
+            grid-row-start: 3;
+            grid-row-end: span 2; /* ocupa duas linhas começando na linha 3 */
+        }
+
+        /*
+         `.d10` e `.d11` demonstram que itens podem se sobrepor se ocuparem
+         a mesma área do grid. `z-index` pode controlar qual fica acima.
+        */
+        .d10,
+        .d11 {
+            grid-column-start: 1;
+            grid-column-end: 3; /* ocupa colunas 1 e 2 */
+            grid-row-start: 5;
+            grid-row-end: span 1;
+        }
+
+        .d10 {
+            z-index: 10; /* traz este item para frente em caso de sobreposição */
         }
     </style>
 </head>

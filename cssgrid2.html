@@ -20,6 +20,55 @@
             border: solid 5px dodgerblue;
             background: #fff;
         }
+
+        body {
+            display: grid;
+            /* ativa o grid no container */
+            display: grid;
+
+            /*
+             define colunas com linhas de grade nomeadas entre colchetes []
+             - `1fr` significa uma fração disponível do espaço
+             - nomes como `metade-1` permitem referenciar linhas/colunas
+               por nome em `grid-column-start`, `grid-column-end`, etc.
+            */
+            grid-template-columns: 
+                [inicio] 1fr
+                [metade-1 meio-1] 1fr
+                [metade-2 meio-2] 1fr [fim];
+
+            /* define 3 linhas de altura igual (1fr cada) */
+            grid-template-rows: repeat(3, 1fr);
+
+            /*
+             espaçamento entre colunas/linhas:
+               - `grid-column-gap` / `grid-row-gap` definem separação
+               - `grid-gap` (atalho) aceita `row-gap column-gap` ou um valor só
+             Note: quando há declarações repetidas, a última tem precedência.
+            */
+            grid-column-gap: 20px;
+            grid-row-gap: 20px;
+            grid-gap: 10px; /* aplicada por último */
+        }
+
+        .d1 {
+            /* posicionamento usando nomes de linhas e 'span' */
+            grid-column-start: metade-2; /* começa na linha de grade nomeada */
+            grid-column-end: fim; /* termina na linha nomeada 'fim' */
+
+            /* atalho 'grid-column: inicio / fim' equivalente a start/end */
+            grid-column: meio-1 / fim;
+
+            /* grid-row: inicia na linha 1 e ocupa 2 linhas (span 2) */
+            grid-row: 1 / span 2;
+
+            /*
+             'grid-area' é atalho para 'grid-row-start / grid-column-start /
+             grid-row-end / grid-column-end'. Aqui demonstra uso misto
+             com números e nomes; a última declaração válida será aplicada.
+            */
+            grid-area: 1 / meio-1 / span 3 / fim;
+        }
     </style>
 </head>
 

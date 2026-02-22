@@ -6,9 +6,69 @@
     <title>CSS Grid #03</title>
     <link rel="stylesheet" href="css/tag.css">
     <style>
-        
+        * {
+            padding: 0;
+            margin: 0;
+        }
 
-        
+        header {
+            grid-area: cabecalho;
+        }
+
+        nav {
+            grid-area: navegacao;
+        }
+
+        main {
+            grid-area: conteudo;
+        }
+
+        footer {
+            grid-area: rodape;
+        }
+
+        body {
+            /* ativa o Grid Layout no container */
+            display: grid;
+
+            /* garante que o grid ocupe no mínimo a altura da janela */
+            min-height: 100vh;
+
+            /*
+             define duas colunas: uma fixa (300px) e uma flexível (1fr)
+             - 1fr representa uma fração do espaço disponível
+            */
+            grid-template-columns: 300px 1fr;
+
+            /* define três linhas: cabeçalho, conteúdo flexível e rodapé */
+            grid-template-rows: 100px 1fr 100px;
+
+            /*
+             `grid-template-areas` permite nomear áreas do grid por strings.
+             Cada string representa uma linha; nomes repetidos fazem
+             a área ocupar múltiplas colunas.
+             Ex.: 'cabecalho cabecalho' faz o cabeçalho ocupar ambas colunas.
+            */
+            grid-template-areas:
+                'cabecalho cabecalho'
+                'navegacao conteudo'
+                'rodape rodape';
+        }
+
+        @media(max-width: 700px) {
+            body {
+                /* versão responsiva: uma única coluna */
+                grid-template-columns: 1fr;
+
+                /* alturas ajustadas para dispositivos menores */
+                grid-template-rows: 80px 1fr 100px;
+
+                /* reorganiza as áreas em uma coluna (stack) */
+                grid-template-areas: 'navegacao' 'conteudo' 'rodape';
+            }
+
+            header { display: none; }
+        }
     </style>
 </head>
 

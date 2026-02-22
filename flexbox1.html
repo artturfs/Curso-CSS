@@ -4,26 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Flexbox #01</title>
-    <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+        div {
+            border: solid 5px dodgerblue;
+            font-size: 40px;
+            margin: 5px;
+        }
+
+        .big {
+            font-size: 1.5em;
+        }
+
+        .flex-container {
+             /* ativa o modo flex; os filhos tornam-se flex items */
+            display: flex;
+
+            /*
+            flex-direction: define o eixo principal (main axis) e a direção dos itens.
+            Valores comuns:
+            - row: eixo principal horizontal (esquerda→direita)
+            - row-reverse: horizontal invertido (direita→esquerda)
+            - column: eixo principal vertical (topo→baixo)
+            - column-reverse: vertical invertido (baixo→topo)
+            Aqui estamos usando 'row' como exemplo visual.
+            */
+            flex-direction: row;
+            width: 50%;
+
+            /*
+            flex-wrap: controla quebra de linha dos itens quando não cabem
+            - nowrap (padrão): todos em uma linha
+            - wrap: itens passam para a próxima linha
+            - wrap-reverse: mesma coisa, com ordem das linhas invertida
+            */
+            flex-wrap: wrap;
+
+            /*
+            flex-flow: atalho para 'flex-direction' + 'flex-wrap'
+            Ex.: 'row wrap' equivale a flex-direction: row; flex-wrap: wrap;
+            */
+            flex-flow: row wrap;
+            height: 400px;
+
+            /*
+            justify-content: alinha itens ao longo do eixo principal (main axis).
+            Valores:
+            - flex-start: alinha ao início
+            - flex-end: alinha ao fim
+            - center: centraliza
+            - space-between: espaços iguais entre itens
+            - space-around: espaços ao redor dos itens
+            */
+            justify-content: space-between;
+
+            /*
+            align-items: alinha itens ao longo do eixo cruzado (cross axis).
+            Em 'row' o cross axis é vertical. Valores:
+            - stretch (padrão): estica para preencher o container
+            - flex-start / flex-end: início / fim do eixo cruzado
+            - center: centraliza no cruzado
+            - baseline: alinha pela linha de base do texto
+            */
+            align-items: center;
+
+            /*
+            align-content: quando há várias linhas (por causa do wrap),
+            alinha as linhas entre si ao longo do eixo cruzado.
+            Não tem efeito quando há apenas uma linha.
+            Valores: flex-start, flex-end, center, space-between, space-around, stretch
+            */
+            align-content: space-between;
+            }
     </style>
 </head>
 
 <body>
-    <div class="flex-container tag nolabel">
-        <div class="tag nolabel">1</div>
-        <div class="tag nolabel">2</div>
-        <div class="tag nolabel big">3</div>
-        <div class="tag nolabel">4</div>
-        <div class="tag nolabel">5</div>
-        <div class="tag nolabel">6</div>
-        <div class="tag nolabel">7</div>
-        <div class="tag nolabel">8</div>
-        <div class="tag nolabel">9</div>
-        <div class="tag nolabel">10</div>
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        <div class="big">3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
     </div>
-    <script src="js/tag.js"></script>
 </body>
 
 </html>
